@@ -1,0 +1,41 @@
+{
+  "name": "dsh-closure-tools",
+  "version": "0.1.0",
+  "description": "Read-only diagnostics for host-upgrade breakage: plugin decoupling checks (R1-R5) and dependency-closure link verification/repair. Zero npm dependencies.",
+  "keywords": [
+    "dsh",
+    "dependency-closure",
+    "junction",
+    "symlink",
+    "decoupling",
+    "diagnostics",
+    "read-only"
+  ],
+  "type": "module",
+  "bin": {
+    "check-decoupling": "check-decoupling.mjs",
+    "closure-check": "closure-check.mjs",
+    "repair-closure-links": "repair-closure-links.mjs"
+  },
+  "files": [
+    "check-decoupling.mjs",
+    "closure-check.mjs",
+    "repair-closure-links.mjs",
+    "lib",
+    "scripts",
+    "examples",
+    "docs",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "verify": "node scripts/verify-source.mjs .",
+    "test": "node scripts/test-fixtures.mjs",
+    "fixtures": "node scripts/test-fixtures.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,87 @@
+{
+  "$comment": "对照示例：本文件**不参与运行时解析**，只是把「含义 → CLI 参数 → 环境变量 → 默认值」列全，方便照着抄。",
+  "closureCheck": {
+    "linkRoot": {
+      "meaning": "要体检的依赖链接层",
+      "cli": "--link-root <dir>",
+      "env": "CLOSURE_LINK_ROOT",
+      "default": "<DSH home>/profiles/node_modules（<DSH home> = BUTLER_DSH_HOME > DSH_HOME > ~/.dsh）"
+    },
+    "sourceRoot": {
+      "meaning": "期望闭包根（干净态基准）",
+      "cli": "--source-root <dir>",
+      "env": "CLOSURE_SOURCE_ROOT",
+      "default": "自动探测全局包管理器下的 <nm>/@deepseek-ai/dsh/node_modules；探测不到则判环境不可用"
+    },
+    "pollutionPatterns": {
+      "meaning": "污染特征（命中即判红）；给了就整体替换内置默认",
+      "cli": "--pollution-pattern <正则>（可重复）",
+      "env": "CLOSURE_POLLUTION_PATTERNS",
+      "default": ["(^|[\\\\/])[^\\\\/]*-test[^\\\\/]*(?=[\\\\/]|$)", "canary"]
+    },
+    "packageName": {
+      "meaning": "受检宿主包名（决定期望闭包根的自动探测路径）",
+      "cli": "（无）",
+      "env": "CLOSURE_PACKAGE_NAME",
+      "default": "@deepseek-ai/dsh"
+    }
+  },
+  "repairClosureLinks": {
+    "archiveRoot": {
+      "meaning": "回滚清单与备份的落点",
+      "cli": "--archive-root <dir>",
+      "env": "CLOSURE_ARCHIVE_ROOT",
+      "default": "<包根>/.backups/closure-link-repair-<时间戳>/"
+    },
+    "npmRoot": {
+      "meaning": "全局 npm 顶层（修法的次级候选目标）",
+      "cli": "--npm-root <dir>",
+      "env": "CLOSURE_NPM_ROOT",
+      "default": "自动探测（%APPDATA%\\npm\\node_modules / ~/.npm-global/lib/node_modules / /usr/local/lib/node_modules …）"
+    },
+    "repairScriptCandidates": {
+      "meaning": "处置建议里会探测哪些修法脚本",
+      "cli": "（无）",
+      "env": "CLOSURE_REPAIR_SCRIPTS（额外脚本路径，逗号分隔）；CLOSURE_TEST_ROOTS（各测试根，逗号分隔）",
+      "default": "本包自带的 repair-closure-links.mjs"
+    }
+  },
+  "checkDecoupling": {
+    "root": {
+      "meaning": "扫描根（含各插件源码包目录）",
+      "cli": "--root <dir>",
+      "env": "DECOUPLING_SCAN_ROOT / DSH_TOOLS_DIR",
+      "default": "cwd/tools（存在时），否则 cwd"
+    },
+    "profileNodeModules": {
+      "meaning": "profile 侧依赖目录（扫「只在 profile 实体里」的包时用）",
+      "cli": "--profile <name> / --profile-root <dir>",
+      "env": "DECOUPLING_PROFILE / DECOUPLING_PROFILE_ROOT",
+      "default": "<DSH home>/profiles/web/node_modules"
+    },
+    "profilePackages": {
+      "meaning": "只在 profile 实体里、没有源码目录的包名",
+      "cli": "--profile-pkgs a,b",
+      "env": "DECOUPLING_PROFILE_PKGS",
+      "default": "空"
+    },
+    "vocabFile": {
+      "meaning": "宿主词表（R4 用）",
+      "cli": "--vocab <file>",
+      "env": "DECOUPLING_VOCAB",
+      "default": "内置词表 + 适配层唯一源里扫出的事件名"
+    },
+    "adapterVerifier": {
+      "meaning": "适配层副本校验器模块（需导出 verifySummary()；不配置则 R5 跳过）",
+      "cli": "--adapter-verifier <file>",
+      "env": "DECOUPLING_ADAPTER_VERIFIER",
+      "default": "自动探测 <扫描根>/sync-host-adapter.mjs"
+    },
+    "jsonReport": {
+      "meaning": "JSON 报告路径（默认不写文件）",
+      "cli": "--json [path] / --no-json",
+      "env": "DECOUPLING_JSON",
+      "default": "不写文件"
+    }
+  }
+}

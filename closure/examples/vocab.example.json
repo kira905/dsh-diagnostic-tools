@@ -1,0 +1,19 @@
+{
+  "$comment": "R4 词表示例：把你自己宿主的「事件名 / ctx 服务名」写在这里，用 --vocab <file> 或 DECOUPLING_VOCAB 注入。本文件只是示例，工具内置了同名的一份默认词表。",
+  "events": [
+    "turn/start",
+    "turn/end",
+    "tool/pre-execute",
+    "session/event"
+  ],
+  "services": [
+    "webServer",
+    "settings",
+    "commands",
+    "tools",
+    "skills",
+    "sessions",
+    "logger",
+    "slots"
+  ]
+}

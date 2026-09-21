@@ -1,0 +1,21 @@
+# 临时 / 本地文件
+.tmp-*/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 依赖与构建产物（本工具包零依赖、无构建步骤，理论上不该出现）
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+*.tgz
+
+# 本地运行产物
+#   扫描缓存默认落在 DSH home 下（不在本目录），但自定义 --cache 时可能指到这里
+attach-scan-cache.json
+*attach-scan-cache.json
+_tmp/
+
+# 验证脚本跑出来的临时夹具（默认落在系统临时目录，这里再兜一层）
+attach-tools-fixture/
