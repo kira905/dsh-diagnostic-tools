@@ -95,3 +95,21 @@ node closure/closure-check.mjs --help        # 或 node attachments/attachments-
   宿主升级后这些**字符串契约**可能变化 —— 这正是 `closure/` 要体检的对象，也是为什么
   每个子目录都把宿主相关名字**集中在一个文件**（`lib/host-protocol.*` / `lib/closure-links.mjs`）里，
   而不是散落在功能代码中。
+
+---
+
+## 7. 相关组件
+
+同属 DSH 生态的伴生组件，各自独立仓、独立版本、许可各自独立；它们都回链到同一份文档仓
+[`ops-handoff-design`](https://github.com/kira905/ops-handoff-design)
+（Gitee 镜像 <https://gitee.com/kira905/ops-handoff-design>）：
+
+| 组件仓 | 做什么 | 与本工具组的关系 |
+|---|---|---|
+| `dsh-diagnostic-tools` | 依赖闭包体检 + 会话图片附件对账 | **本仓** |
+| [`dsh-ecosystem-panel`](https://github.com/kira905/dsh-ecosystem-panel) | 只读生态总览面板（持续、三色、不落盘） | 分工互补：它回答**「今天怎么样」**（持续观察、只渲染不复算），本仓回答**「具体坏在哪、怎么修」**（离线、可复跑、带修法与回滚清单）——两者都只诊断，谁也没写谁 |
+| [`dsh-butler-archive`](https://github.com/kira905/dsh-butler-archive) | 会话归档管理（列表 / 预览 / 恢复 / 删除 + 可选自动归档） | 本仓 `closure/` 的体检对象**包括它**：靠 `cordis.patch.yml` 的 insert 注册的组件，最容易在宿主编排变更后「实体缺失、启动不报」 |
+| [`dsh-session-title-live`](https://github.com/kira905/dsh-session-title-live) | 会话标题跟着对话实时更新 | 同上：它把宿主契约集中在 `lib/host-protocol.js`，那份常量清单与本仓 `closure/` **要体检的是同一类风险**（宿主升级后字符串契约失效） |
+
+> 组件之间**没有代码依赖**，也不共享运行时 —— 之所以互指，是因为它们回答的是同一类人的同一批问题
+> （长期在自有机器上跑 agent：装得下、找得到、看得见、查得清）。谁装谁不装，互不影响。
