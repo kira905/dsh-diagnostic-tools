@@ -8,6 +8,22 @@
 
 ---
 
+## 设计依据
+
+本工具组是「[ops-handoff-design](https://github.com/kira905/ops-handoff-design)」所述运维体系的一个实现，
+设计依据（对应文档仓约定的固定四问）：
+
+- **它为什么存在、边界在哪** → 见《只读监控面板的设计纪律》**§2 显示纪律（不可探测 + 原因）**、**§5 数据来源三分类（「通用化」的天花板在哪）**
+- **它与宿主版本的兼容区间** → 见《多机交接与云中继》**§4.5「兼容性要求」**（另见本 README 第 6 节「现状与限度」）
+- **本组件特有的坑与实测** → 见本 README 各子目录的「限度如实说」与「宿主版本适用性」两节；两个子目录都把宿主相关的名字**集中在一个文件**里，正是为了让升级时的回归面收敛
+- **文档仓地址** → Gitee（镜像）<https://gitee.com/kira905/ops-handoff-design>
+  ｜ GitHub（主）<https://github.com/kira905/ops-handoff-design>
+  （文档仓的组件索引表回指本仓；两仓互链、版本各自独立）
+
+> 设计稿里不写具体仓库地址（写死即死链），实现清单统一收在文档仓的组件索引表里——本仓只负责回链章节。
+
+---
+
 ## 1. 你需要哪个？
 
 | 你遇到的现象 | 用哪个子目录 | 入口 |
@@ -83,7 +99,7 @@ node closure/closure-check.mjs --help        # 或 node attachments/attachments-
 ## 5. 版本与发布
 
 - **子目录**各自 SemVer（当前均为 **0.1.0**，首个公开版本）；
-- **仓级**用 tag 记录结构状态（当前 `v0.1.0` = closure 0.1.0 / attachments 0.1.0）；
+- **仓级**用 tag 记录结构状态（当前 `v0.1.2` = closure 0.1.0 / attachments 0.1.0，仓级 tag 只随仓根文档更新推进）；
 - 发布流程与检查单见 [`docs/RELEASING.md`](./docs/RELEASING.md)；**只发 Release，不发 npm**。
 
 ## 6. 现状与限度
@@ -110,6 +126,8 @@ node closure/closure-check.mjs --help        # 或 node attachments/attachments-
 | [`dsh-ecosystem-panel`](https://github.com/kira905/dsh-ecosystem-panel) | 只读生态总览面板（持续、三色、不落盘） | 分工互补：它回答**「今天怎么样」**（持续观察、只渲染不复算），本仓回答**「具体坏在哪、怎么修」**（离线、可复跑、带修法与回滚清单）——两者都只诊断，谁也没写谁 |
 | [`dsh-butler-archive`](https://github.com/kira905/dsh-butler-archive) | 会话归档管理（列表 / 预览 / 恢复 / 删除 + 可选自动归档） | 本仓 `closure/` 的体检对象**包括它**：靠 `cordis.patch.yml` 的 insert 注册的组件，最容易在宿主编排变更后「实体缺失、启动不报」 |
 | [`dsh-session-title-live`](https://github.com/kira905/dsh-session-title-live) | 会话标题跟着对话实时更新 | 同上：它把宿主契约集中在 `lib/host-protocol.js`，那份常量清单与本仓 `closure/` **要体检的是同一类风险**（宿主升级后字符串契约失效） |
+| [`dsh-task-board-local`](https://github.com/kira905/dsh-task-board-local) | 自维护任务看板（卡片 = 一次真实会话 + 人工验收闸） | 它是"自研 + insert 注册"的代表件，也正是本仓 `closure/` 与宿主契约体检的**重点对象**；它的执行记录缺失（跨机并回）曾把本仓的判据坑出来一次——见《任务卡「假完成」与「被打断会话」的识别》 |
+| [`dsh-firstaid`](https://github.com/kira905/dsh-firstaid) | 零依赖急救台：起不来 / 假死 / 要撤销改动 / 数据被删四类现场压成一个入口 | 分工：本仓是**离线专项体检**（升级前后主动跑），它是**现场分诊**（已经出事时先跑）——都不动手，都只出证据 |
 
 > 组件之间**没有代码依赖**，也不共享运行时 —— 之所以互指，是因为它们回答的是同一类人的同一批问题
 > （长期在自有机器上跑 agent：装得下、找得到、看得见、查得清）。谁装谁不装，互不影响。
