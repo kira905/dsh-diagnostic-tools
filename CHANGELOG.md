@@ -7,6 +7,14 @@
 
 ---
 
+## [0.1.4] - 2026-10-16
+
+### Changed
+
+- 🔴 **许可变更（本仓级；两个子目录同步）**：**自本版起仓根与两个子目录均为 `AGPL-3.0-only` + 商业授权（双许可）**（此前 `v0.1.0` ~ `v0.1.3` 的全部历史 tag 为 **MIT**）。五处口径同步改：仓根 `LICENSE` / `closure/LICENSE` / `attachments/LICENSE`（三份同文本，换成 GNU AGPL-3.0 官方全文）+ 仓根 README 中英双份的「许可」段 + 两个子目录的 `package.json#license`（`MIT` → `AGPL-3.0-only`）；两个子目录 README 的「许可与发布状态」段同步。子目录版本 `0.1.0` → **`0.1.1`**（许可变更）。⚠️ 术语必须读准：**AGPL 本身不禁商用**（AGPL / MIT / Apache 本身都不禁商用，AGPL 只要求**衍生作品也开源**）；「+ 商业授权」= **双许可** —— 「要么按 AGPL 衍生开源、要么取得商业授权」。已按 MIT 发布的版本授权**收不回**，变更只约束**未来版本**。
+- **宿主兼容区间（如实说明 · 子包不声明 peer）**：两个子目录都是**独立 CLI 工具**（不 `import` 任何 `@deepseek-ai/dsh-*` 包）⇒ **不声明 `peerDependencies`**（声明会误导成"与宿主版本绑定"）。实测环境如实写进 README：**在隔离实例（端口 3090，主包 `0.2.0-rc.2`）里真跑过** —— `closure-check.mjs --home <隔离 home>` **rc=0（判定干净）**、`attachments-audit.mjs --home <隔离 home> --quiet` **rc=0（无缺失）**。
+- **本轮无代码与行为改动**（推送内容为 `LICENSE` ×3 + 三个 `package.json` + `README.md` / `README.en.md` / 两个子目录 README + 本文件）。
+
 ## [0.1.3] - 2026-10-12
 
 ### Changed

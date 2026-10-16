@@ -98,15 +98,28 @@ Each subdirectory README carries the full **usage table / arguments / exit-code 
 
 ## 4. License
 
-**MIT** (see `LICENSE`). Each subdirectory also carries its own copy of the same `LICENSE` text, so either can be taken on its own;
+**AGPL-3.0-only plus a commercial license** (dual licensing; see the repository-root `LICENSE`). Each subdirectory also carries its own copy of the same `LICENSE` text, so either can be taken on its own;
 **once combined into this repository, the repository-root `LICENSE` is authoritative**, and changing the license means changing all three places (see `docs/RELEASING.md` §2).
+
+- ⚠️ **The AGPL does not forbid commercial use by itself**: you may use, modify and redistribute it freely (commercial use included), but **if you make a modified version available to others over a network, you must offer the corresponding source under the AGPL as well**;
+- "+ a commercial license" = **dual licensing**: obtain a commercial license if you need it in a closed-source or commercial setting (where AGPL's copyleft obligations do not apply) — there is no public contact address yet, so **please reach out by opening an issue**;
+- **License history**: every historical tag of this repository (`v0.1.0` – `v0.1.3`) was released under **MIT**; **from `v0.1.4` onward (including both subpackages at `0.1.1`) it is `AGPL-3.0-only plus a commercial license`**. Licenses for versions already published under MIT cannot be revoked — the change binds **future** versions only.
 
 ---
 
+## Host compatibility (measured)
+
+This repository is a **standalone CLI toolkit** (neither subdirectory imports any `@deepseek-ai/dsh-*` package) ⇒ **it declares no `peerDependencies`** — declaring one would falsely imply a version binding to the host. The table below only records the **environment actually exercised**.
+
+| Environment | Status | Basis |
+|---|---|---|
+| **DSH host `0.2.0-rc.2`** (isolated instance: separate data root + port 3090) | ✅ **Exercised for real (2026-10-16)** | `closure/closure-check.mjs` → **rc=0 (verdict: clean)**; `attachments/attachments-audit.mjs` → **rc=0 (nothing missing)**. Both were pointed at the isolated instance's **separate data root** — **production was not touched** |
+| other host versions | ⚠️ **Not measured; no promise** | Both subdirectories base their verdicts on host **string contracts** (directory shapes, event names, service names); a host upgrade may make them inaccurate — which is exactly what `closure/` exists to check |
+
 ## 5. Versions and releases
 
-- **Subdirectories** follow SemVer independently (both are currently **0.1.0**, the first public version);
-- The **repository level** uses tags to record structural state (currently `v0.1.2` = closure 0.1.0 / attachments 0.1.0; a repository-level tag only moves forward together with updates to the repository-root documents);
+- **Subdirectories** follow SemVer independently (both are currently **0.1.1**: `0.1.0` was the first public version, `0.1.1` is the license change);
+- The **repository level** uses tags to record structural state (currently `v0.1.4` = closure 0.1.1 / attachments 0.1.1; a repository-level tag only moves forward together with updates to the repository-root documents);
 - The release process and checklist are in [`docs/RELEASING.md`](./docs/RELEASING.md); **releases only — there is no npm package.**
 
 ## 6. Current state and limits

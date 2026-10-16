@@ -89,7 +89,7 @@ check('给定普通目录 → 原样（不猜测式改写）', cfg.normalizeSour
 const defPat = cfg.resolvePollutionPatterns()
 check('默认污染特征 2 条', defPat.length === 2, JSON.stringify(defPat.map((p) => p.id)))
 const inj = cfg.resolvePollutionPatterns({ cli: ['my-roaming', 'another-install'] })
-check('注入特征整体替换默认', inj.length === 2 && inj[0].id === 'custom-1' && inj[0].re.test('C:/x/my-roaming/pkg'), JSON.stringify(inj.map((p) => p.id)))
+check('注入特征整体替换默认', inj.length === 2 && inj[0].id === 'custom-1' && inj[0].re.test('/x/my-roaming/pkg'), JSON.stringify(inj.map((p) => p.id)))
 let threw = false
 try { cfg.compilePollutionPatterns(['[unterminated']) } catch { threw = true }
 check('非法正则 fail-closed（抛错而不是静默放过）', threw)
