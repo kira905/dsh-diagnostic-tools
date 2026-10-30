@@ -1,5 +1,20 @@
 # dsh-diagnostic-tools —— 诊断取证工具组
 
+> **本仓是历史聚合仓，不是可安装的包**（仓根无 `package.json`；两份子目录包的包名在 npm 上均 404）。请装新的两个：依赖闭包体检 → `@kira905/dsh-closure-tools`；会话图片对账 → `@kira905/dsh-diagnostics-extra`。**别 `git clone` 本仓当安装源** —— 会得到与上面两个同名不同源的第二份。
+
+## 装完自检（三条只读验法）
+
+`<profile>` 换成你实际用的 profile（默认 `web`），`<数据根>` 换成你的 DSH 数据根（默认 `~/.dsh`）。
+
+```powershell
+# ①② 本仓不适用：它不是可安装的包，没有组合树 / 组合列表可查
+# ③ 本仓不适用：仓根无 package.json，没有可安装的命令入口
+#    要验「新装的那两个有没有生效」，去它们各自的 README
+#    （@kira905/dsh-closure-tools / @kira905/dsh-diagnostics-extra）
+```
+
+---
+
 > **English**: [README.en.md](./README.en.md)
 
 > **一句话**：一个仓、两个子目录，回答长期跑编码 agent 的人迟早会问的两个问题 ——
