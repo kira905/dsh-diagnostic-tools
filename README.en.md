@@ -1,5 +1,20 @@
 # dsh-diagnostic-tools
 
+> ### What this is
+> **The first-batch diagnostic tooling** (from the October 2026 first round of repo splitting).
+>
+> ### What it solved
+> Three questions at the time: does a plugin depend on host internals, do `node_modules` links point at the wrong place, and are the images a session references still on disk.
+>
+> ### ⚠️ Prefer the newer repos
+> The capabilities now live in two cleaner repos:
+> - decoupling and dependency closure → [`dsh-closure-tools`](https://github.com/kira905/dsh-closure-tools)
+> - image-attachment reconciliation → [`dsh-diagnostics-extra`](https://github.com/kira905/dsh-diagnostics-extra)
+>
+> Kept for history. **Not published to npm**, and no longer updated.
+
+---
+
 > **Status**: published (Gitee + GitHub) · repo-level tag `v0.1.2` (closure `0.1.0` / attachments `0.1.0`)
 > **Repository**: <https://github.com/kira905/dsh-diagnostic-tools> ｜ <https://gitee.com/kira905/dsh-diagnostic-tools>
 > **License**: MIT — see [`LICENSE`](./LICENSE)
