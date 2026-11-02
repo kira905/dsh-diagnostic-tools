@@ -1,5 +1,20 @@
 # dsh-diagnostic-tools —— 诊断取证工具组
 
+> ### 这是什么
+> **早期批次的诊断取证工具**（2026-10 首批拆仓时的那一版）。
+>
+> ### 它解决什么
+> 当时要回答三个问题：插件有没有依赖宿主内部、`node_modules` 的链接有没有指错、会话里引用的图片还在不在。
+>
+> ### ⚠️ 现在建议用新版
+> 能力已经拆进两个更干净的仓：
+> - 解耦与依赖闭包 → [`dsh-closure-tools`](https://github.com/kira905/dsh-closure-tools)
+> - 图片附件对账与体检 → [`dsh-diagnostics-extra`](https://github.com/kira905/dsh-diagnostics-extra)
+>
+> 本仓保留作为历史，**没有发布到 npm**，也不再更新。
+
+---
+
 > **本仓是历史聚合仓，不是可安装的包**（仓根无 `package.json`；两份子目录包的包名在 npm 上均 404）。请装新的两个：依赖闭包体检 → `@kira905/dsh-closure-tools`；会话图片对账 → `@kira905/dsh-diagnostics-extra`。**别 `git clone` 本仓当安装源** —— 会得到与上面两个同名不同源的第二份。
 
 ## 装完自检（三条只读验法）
