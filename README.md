@@ -6,6 +6,14 @@
 > ### 它解决什么
 > 当时要回答三个问题：插件有没有依赖宿主内部、`node_modules` 的链接有没有指错、会话里引用的图片还在不在。
 >
+> ### 一条命令跑起来
+> ```bash
+> git clone https://github.com/kira905/dsh-diagnostic-tools
+> cd dsh-diagnostic-tools
+> node closure/closure-check.mjs --help    # 只看用法，不写任何东西
+> ```
+> 本仓**没有 `package.json`、不发布 npm**：拉下来直接 `node` 跑脚本就是全部安装步骤（完整说明见 §2）。
+>
 > ### ⚠️ 现在建议用新版
 > 能力已经拆进两个更干净的仓：
 > - 解耦与依赖闭包 → [`dsh-closure-tools`](https://github.com/kira905/dsh-closure-tools)
@@ -19,7 +27,7 @@
 
 ## 装完自检（三条只读验法）
 
-`<profile>` 换成你实际用的 profile（默认 `web`），`<数据根>` 换成你的 DSH 数据根（默认 `~/.dsh`）。
+`<profile>` 换成你实际用的 profile（放插件的那个格子，默认 `web`），`<数据根>` 换成你的 DSH 数据根（默认 `~/.dsh`）。
 
 ```powershell
 # ①② 本仓不适用：它不是可安装的包，没有组合树 / 组合列表可查
